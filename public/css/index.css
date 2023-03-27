@@ -1,0 +1,322 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.nav {
+    background-color: #171616ef;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    position: fixed;
+}
+.logo-tengkorak {
+    display: flex;
+    align-items: center;
+}
+.logo-nav-bar {
+    width: 15%;
+    margin-right: 3rem;
+    margin-left: 3rem;
+    border-radius: 50%;
+}
+.hyperlink {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin-right: 1rem;
+    margin-left: 1.5rem;
+    text-decoration: none;
+    align-items: center;
+}
+.top-score {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin-right: 1rem;
+    margin-left: 1.5rem;
+    text-decoration: none;
+    align-items: center;
+}
+.registration {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin-left: 1rem;
+    margin-right: 2rem;
+    text-decoration: none;
+}
+.div-icon {
+    display: none;
+}
+.home-background-section {
+    background-image: url("../images/main-bg.jpg");
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    object-fit: cover;
+    width: 100%;
+}
+/* .container{
+    align-items: centers;
+} */
+.main-title {
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-top: 8rem;
+}
+.sub-title {
+    color: white;
+    font-size: 25px;
+    font-weight: lighter;
+    margin-left: 26.5rem;
+}
+.btn-warning {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 2rem;
+    margin-left: 35rem;
+}
+.scroll-down {
+    margin-left: 36.5rem;
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    animation-name: bounce-2;
+    animation-timing-function: ease;
+    transform-origin: bottom;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    color: white;
+    text-transform: capitalize;
+}
+@keyframes bounce-2 {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+.second-background-section {
+    background-image: url("../images/the-games-bg.jpg");
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+}
+.regular-text-1 {
+    color: white;
+    font-size: 2rem;
+    font-weight: lighter;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    margin-top: 13rem;
+}
+.regular-text-2 {
+    color: white;
+    font-size: 4rem;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+.carousel {
+    margin-top: 15rem;
+}
+.third-background-section {
+    background-image: url("../images/features.jpg");
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+}
+.small-title {
+    color: white;
+    font-size: 2rem;
+    font-weight: lighter;
+    font-style: italic;
+}
+.big-title {
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+}
+.features {
+    color: rgba(189, 126, 8, 0.944);
+    font-size: 2rem;
+}
+.small-feature {
+    color: white;
+}
+.forth-background-section {
+    background-image: url("../images/requirements.png");
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+}
+.system-requirement {
+    color: white;
+    font-size: 3rem;
+    margin-top: 7rem;
+    margin-left: 6rem;
+}
+.title-description {
+    color: orange;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.description {
+    color: white;
+}
+@media only screen and (max-width:1440px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .nav {
+        background-color: #171616ef;
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
+        position: fixed;
+    }
+    .logo-nav-bar {
+        width: 10%;
+        margin-right: 3rem;
+        margin-left: 3rem;
+        border-radius: 50%;
+    }
+    .home-background-section {
+        background-image: url("../images/main-bg.jpg");
+        height: 780px;
+        background-size: cover;
+        display: flex;
+        max-zoom: 100%;
+    }
+    .second-background-section {
+        background-image: url("../images/the-games-bg.jpg");
+        height: 780px;
+        background-size: cover;
+        display: flex;
+    }
+    .third-background-section {
+        background-image: url("../images/features.jpg");
+        height: 780px;
+        background-size: cover;
+        display: flex;
+    }
+    .forth-background-section {
+        background-image: url("../images/requirements.png");
+        height: 780px;
+        background-size: cover;
+        display: flex;
+    }
+}
+
+@media only screen and (max-width:1024px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .home-background-section {
+        background-image: url("../images/main-bg.jpg");
+        height: 100vh;
+        background-size: cover;
+        display: flex;
+    }
+    .main-title {
+        font-size: 4rem;
+    }
+    .sub-title {
+        font-size: 1.5rem;
+        margin-left: 16rem;
+    }
+    .btn-warning {
+        margin-left: 24rem;
+    }
+    .scroll-down {
+        margin-left: 25.5rem;
+    }
+    .third-background-section {
+        background-image: url("../images/features.jpg");
+        height: 585px;
+        background-size: cover;
+        display: flex;
+    }
+    .small-title {
+        font-size: 1.5rem;
+    }
+    .big-title {
+        font-size: 3rem;
+    }
+}
+@media only screen and (max-width:768px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .logo-nav-bar {
+        width: 7%;
+    }
+    .registration {
+        display: none;
+    }
+    .div-icon {
+        display: block;
+        margin-right: 2rem;
+        align-items: center;
+    }
+    .icon {
+        width: 18%;
+        float: right;
+    }
+    .home-background-section {
+        background-image: url("../images/main-bg.jpg");
+        background-size: 100%;
+        height: 401px;
+    }
+    .main-title {
+        font-size: 3rem;
+        margin-top: 5rem;
+    }
+    .sub-title {
+        font-size: 1.5rem;
+        margin-left: 10rem;
+    }
+    .btn-warning {
+        font-size: 13px;
+        margin-top: 1rem;
+        margin-left: 18.5rem;
+    }
+    .scroll-down {
+        margin-left: 19.5rem;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        animation-name: bounce-2;
+        animation-timing-function: ease;
+        transform-origin: bottom;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        color: white;
+        text-transform: capitalize;
+    }
+    @keyframes bounce-2 {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-50px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+}
