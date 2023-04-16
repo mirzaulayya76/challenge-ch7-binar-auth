@@ -1,0 +1,281 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Mirza's Game Room API - OpenAPI 3.0",
+      "description": "This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about\nSwagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!\nYou can now help us improve the API whether it's by making changes to the definition itself or to the code.\nThat way, with time, we can improve the API in general, and expose some of the new features in OAS3.",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "email": "apiteam@swagger.io"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version": "1.0.11"
+    },
+    "externalDocs": {
+      "description": "Find out more about Swagger",
+      "url": "http://swagger.io"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8500/api"
+      }
+    ],
+    "tags": [
+      {
+        "name": "auth"
+      },
+      {
+        "name": "room",
+        "description": "Everything about Game Rooms"
+      },
+      {
+        "name": "play",
+        "description": "Play the game!"
+      }
+    ],
+    "paths": {
+      "/login": {
+        "post": {
+          "tags": [
+            "auth"
+          ],
+          "summary": "login",
+          "operationId": "login",
+          "requestBody": {
+            "$ref": "#/components/requestBodies/Login"
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/LoginResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Failed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/room": {
+        "get": {
+          "tags": [
+            "room"
+          ],
+          "summary": "Ambil semua data room",
+          "description": "Ambil semua data room yang tersedia",
+          "operationId": "getAllRooms",
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Room"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized. Please login first."
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/room/create": {
+        "post": {
+          "tags": [
+            "room"
+          ],
+          "summary": "Create Room",
+          "description": "Buat Game Room baru",
+          "operationId": "createRoom",
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Room"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid email"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        }
+      },
+      "/room/{roomId}/play": {
+        "post": {
+          "tags": [
+            "play"
+          ],
+          "summary": "Create Room",
+          "description": "Buat Game Room baru",
+          "operationId": "playGame",
+          "parameters": [
+            {
+              "name": "roomId",
+              "in": "path",
+              "description": "ID of room to be played",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PlayGame"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid Input",
+              "content": {
+                "applicaiton/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "requestBodies": {
+        "Login": {
+          "description": "Login dong kak!",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        }
+      },
+      "schemas": {
+        "LoginRequest": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "LoginResponse": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            }
+          }
+        },
+        "PlayGame": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string"
+            },
+            "game": {
+              "$ref": "#/components/schemas/Room"
+            }
+          }
+        },
+        "Room": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "player_one": {
+              "type": "string"
+            },
+            "player_two": {
+              "type": "string"
+            },
+            "player_one_choices": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "player_two_choices": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "winner": {
+              "type": "string"
+            },
+            "times": {
+              "type": "string"
+            },
+            "room": {
+              "type": "string"
+            },
+            "result": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "Error": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "example": "email cannot be empty!"
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "api_key": {
+          "type": "apiKey",
+          "name": "Authorization",
+          "in": "header"
+        }
+      }
+    }
+  }

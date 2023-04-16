@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 async function getAllRoomsController(req, res) {
   try {
-    const rooms = await prisma.game.findMany();
+    const rooms = await prisma.Game.findMany();
     res.json(rooms);
   } catch (error) {
     console.log(error);
@@ -14,7 +14,7 @@ async function getAllRoomsController(req, res) {
 async function getRoomByIdController(req, res) {
   const roomId = Number(req.params.roomId);
   try {
-    const room = await prisma.game.findUnique({ where: { id: roomId } });
+    const room = await prisma.Game.findUnique({ where: { id: roomId } });
     res.json(room);
   } catch (error) {
     console.log(error);
@@ -28,12 +28,14 @@ async function createRoomController(req, res) {
       return res.status(400).json({ message: 'email cannot be empty!' });
     }
     // 1. get dulu user-nya
-    const user = await prisma.user.findUnique({
+    const player = await prisma.playerBiodata.findUnique({
       where: { email: req.body.email },
     });
 
     // 2. Create room & assign current user sebagai player_one pada room ini
-    const game = await prisma.game.create({ data: { player_one: user.email } });
+    const game = await prisma.Game.create({
+      data: { player_one: player.email },
+    });
 
     res.status(200).json({ message: 'Room created successfully', id: game.id });
   } catch (error) {
@@ -59,14 +61,14 @@ async function joinRoomController(req, res) {
     const email = req.body.email;
     const roomId = Number(req.params.roomId);
     //  1. get dulu user-nya
-    const user = await prisma.user.findUnique({ where: { email } });
+    const player = await prisma.playerBiodata.findUnique({ where: { email } });
 
-    if (user === null) {
+    if (player === null) {
       return res.status(400).json({ message: 'email not found!' });
     }
 
     //  2. get room-nya
-    const room = await prisma.game.findUnique({ where: { id: roomId } });
+    const room = await prisma.Game.findUnique({ where: { id: roomId } });
 
     if (room === null) {
       return res.status(400).json({ message: 'room not found!' });
@@ -79,8 +81,8 @@ async function joinRoomController(req, res) {
     }
 
     //  3. update game-nya dengan current user sebagai player_two
-    const updatedRoom = await prisma.game.update({
-      data: { player_two: user.email },
+    const updatedRoom = await prisma.Game.update({
+      data: { player_two: player.email },
       where: { id: roomId },
     });
     res.status(200).json({
@@ -120,7 +122,7 @@ async function playGameController(req, res) {
 
   try {
     // 1. get room
-    const room = await prisma.game.findUnique({ where: { id: roomId } });
+    const room = await prisma.Game.findUnique({ where: { id: roomId } });
 
     if (room === null) {
       return res.status(400).json({ message: 'room not found!' });
@@ -157,7 +159,7 @@ async function playGameController(req, res) {
           .status(400)
           .json({ message: 'Your have filled all your choices!' });
       }
-      const updatedGame = await prisma.game.update({
+      const updatedGame = await prisma.Game.update({
         data: {
           player_one_choices: player_one_choices.concat(choice),
         },

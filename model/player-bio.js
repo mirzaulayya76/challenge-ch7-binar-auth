@@ -12,9 +12,10 @@ function checkPassword(incomingPassword, databasePassword) {
   return bcrypt.compareSync(incomingPassword, databasePassword);
 }
 
-function registration({ firstName, lastName, city, email, password }) {
+async function registration({ firstName, lastName, city, email, password }) {
   const encryptedPassword = encrypt(password);
-  return prisma.playerBiodata.create({
+  console.log({ firstName, lastName, city, email, encryptedPassword });
+  return await prisma.playerBiodata.create({
     data: {
       firstName,
       lastName,
