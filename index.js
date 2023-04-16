@@ -16,6 +16,15 @@ const {
   whoamiController,
 } = require('./controllers/authController');
 
+// Import roomController
+const {
+  createRoomController,
+  joinRoomController,
+  getAllRoomsController,
+  getRoomByIdController,
+  playGameController,
+} = require('./controller/roomController');
+
 // Manggil jsonwebtoken
 const jwt = require('jsonwebtoken');
 
@@ -125,6 +134,16 @@ app.post('/api/login', loginController);
 app.post('/register', registrationController);
 app.post('/logout', logoutController);
 app.get('/whoami', restrictPageAccess, whoamiController);
+
+// Fitur Room
+app.post('/api/login', loginApiController);
+app.get('/api/room', withAuthentication, getAllRoomsController);
+app.get('/api/room/:roomId', getRoomByIdController);
+app.post('/api/room/create', withAuthentication, createRoomController);
+app.post('/api/room/:roomId/join', joinRoomController);
+
+// Fitur Play
+app.post('/api/room/:roomId/play', playGameController);
 
 app.listen(PORT, () => {
   console.log(`Server is Running at http://localhost:${PORT}`);

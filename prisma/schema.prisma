@@ -24,3 +24,15 @@ model playerBiodata {
   email     String @unique
   password  String
 }
+
+model Game {
+  id                 Int      @id @default(autoincrement())
+  player_one         String?
+  player_two         String?
+  player_one_choices String[]
+  player_two_choices String[]
+  winner             String?
+  times              String?
+  room               String?
+  result             String[]
+}
